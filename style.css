@@ -1,0 +1,13 @@
+li span {
+    width: 100px;
+    display: inline-block;
+}
+
+.delete {
+    margin-left: 50px;
+    margin-right: 1px;
+}
+
+.strike {
+    text-decoration: line-through;
+}
