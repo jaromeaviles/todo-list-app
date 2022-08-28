@@ -11,3 +11,12 @@ li span {
 .strike {
     text-decoration: line-through;
 }
+
+button {
+    cursor: pointer;
+}
+
+.btn-disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+}
