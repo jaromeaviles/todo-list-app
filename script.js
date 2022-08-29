@@ -5,6 +5,7 @@ const todoLists = document.querySelector('#todos');
 
 let todos = [];
 let doneTodosArray = [];
+let isUndoneTodos = [];
 
 function showTodo() {
     for (let i = 0; i < todos.length; i++) {
@@ -23,27 +24,42 @@ function showTodo() {
         li.append(delBtn);
         li.append(doneBtn);
     }
-    if (doneTodosArray.length > 0) {
-        let doneLists = document.querySelectorAll('#todos li span');
+    let doneLists = document.querySelectorAll('#todos li span');
         let donebtns = document.querySelectorAll('#todos li .done');
         let delbtns = document.querySelectorAll('#todos li .delete');
+
+    if (doneTodosArray.length > 0) {
+        
         for (let j = 0; j < doneLists.length; j++) {
             if (doneLists[doneTodosArray[j]] !== undefined) {
                 doneLists[doneTodosArray[j]].classList.add('strike');
             }
         }
-
-        for (let k = 0; k < donebtns.length; k++) {
-            if (donebtns[doneTodosArray[k]] !== undefined) {
-                donebtns[doneTodosArray[k]].classList.add('btn-disabled');
+       
+       
+            for (let k = 0; k < donebtns.length; k++) {
+                let todoIndex = todos.indexOf(doneTodosArray[k]);
+                 if (donebtns[todoIndex] !== undefined) {
+                     donebtns[todoIndex].innerText = 'Undone';
+                     doneLists[todoIndex].classList.add('strike');
+                 }
             }
-        }
-
+          
         for (let l = 0; l < delbtns.length; l++) {
             if (delbtns[doneTodosArray[l]] !== undefined) {
                 delbtns[doneTodosArray[l]].classList.add('btn-disabled');
             }
         }
+
+    }
+
+    if (isUndoneTodos.length > 0) {
+        for (let m = 0; m < isUndoneTodos.length; m++) {
+                let index = todos.indexOf(isUndoneTodos[m]);
+                doneLists[index].classList.remove('strike');
+                donebtns[index].innerText = 'Done';
+        }
+       
     }
     deleteTodo();
     doneTodo();
@@ -62,6 +78,8 @@ clearTodo.addEventListener('click', () => {
     todoLists.replaceChildren();
     todos = [];
     doneTodosArray = [];
+    isUndoneTodos = [];
+    addTodo.classList.remove('btn-disabled');
     todoInput.value = '';
 });
 
@@ -79,17 +97,30 @@ function deleteTodo() {
     }
 }
 
-function doneTodo () {
+function doneTodo() {
     let btns = document.querySelectorAll('.done');
     for (let i = 0; i < btns.length; i++) {
         btns[i].addEventListener('click', e => {
             let todo = document.querySelectorAll('#todos li span');
-            todo[i].classList.add('strike');
-            doneTodosArray.push(i);
-            e.target.classList.add('btn-disabled');
-            todoLists.replaceChildren();
-            showTodo();
+            if (e.target.innerText == 'Done') {
+                if (!doneTodosArray.includes(todo[i].innerText)) {
+                    doneTodosArray.push(todo[i].innerText);
+                }
+                todo[i].classList.add('strike');
+                e.target.innerText = 'Undone';
+                
+            } else {
+                e.target.innerText = 'Done';
+                todo[i].classList.remove('strike');
+
+                // prevent to add same todo
+                if (!isUndoneTodos.includes(todo[i].innerText)) {
+                    isUndoneTodos.push(todo[i].innerText);
+                }
+               
+            }
+            
         });
+
     }
 }
-
