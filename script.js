@@ -45,9 +45,6 @@ addTodo.addEventListener('click', () => {
 clearTodo.addEventListener('click', () => {
     todoLists.replaceChildren();
     todos = [];
-    doneTodosArray = [];
-    isUndoneTodos = [];
-    addTodo.classList.remove('btn-disabled');
     todoInput.value = '';
 });
 
@@ -55,10 +52,8 @@ clearTodo.addEventListener('click', () => {
 function deleteTodo() {
     let btns = document.querySelectorAll('.delete');
     for (let i = 0; i < btns.length; i++) {
-        btns[i].addEventListener('click', e => {
+        btns[i].addEventListener('click', () => {
         todos.splice(i, 1);
-        doneTodosArray.splice(i, 1);
-        e.target.classList.add('btn-disabled');
         todoLists.replaceChildren();
         showTodo();
         });
