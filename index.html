@@ -5,16 +5,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo list App</title>
+    
+    <!-- import Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+    <!-- Import Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
     <!-- import Styles -->
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <h1>Todo List App</h1>
-    <input type="text" name="todo" id="todo">
-    <button class="submit">Add</button>
-    <button class="clear">Clear List</button>
-
-    <ol id="todos"></ol>
+    <div class="container is-max-desktop">
+        <div class="section">
+            <h1 class="is-uppercase is-family-sans-serif has-text-weight-bold">Todos</h1>
+        </div>
+        <div class="section pb-5 pt-0">
+            <form>
+                <div class="columns">
+                    <div class="column is-full">
+                        <input class="input" type="text" name="todo" placeholder="E.g. Go to the store" id="todo">
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="column is-12 is-flex btn-containers">
+                        <button class="button is-success submit">Add Todo</button>
+                        <button class="button is-success is-light clear">Clear List</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="section pt-1">
+            <ul id="todos"></ol>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

@@ -1,15 +1,34 @@
+h1 {
+    font-size: 80px !important;
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+}
+
+#todos .button {
+    height: auto;
+    width: 50px;
+    flex-grow: 1;
+}
+
+.delete-button {
+    margin-right: 10px;
+}
+
 li span {
     width: 100px;
     display: inline-block;
 }
 
-.delete {
-    margin-left: 50px;
-    margin-right: 1px;
-}
-
 .strike {
     text-decoration: line-through;
+}
+
+.btn-containers {
+    justify-content: center;
+    align-items: center;
 }
 
 button {
