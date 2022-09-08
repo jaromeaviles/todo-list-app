@@ -2,6 +2,10 @@ const todoInput = document.querySelector('#todo');
 const addTodo = document.querySelector('.submit');
 const clearTodo = document.querySelector('.clear');
 const todoLists = document.querySelector('#todos');
+const notification = document.querySelector('.notification');
+const deleteNotification = document.querySelector('.notification .delete');
+
+notification.style.display = 'none';
 
 let todos = [];
 
@@ -23,7 +27,6 @@ function showTodo() {
         li.append(span);
         span.classList.add('column', 'is-10');
         span.innerText = `${todos[i].name}`;
-        todoLists.classList.add('box');
         todoLists.append(li);
         // creates button
         let delBtn = document.createElement('button');
@@ -39,8 +42,9 @@ function showTodo() {
         spanDoneBtn.innerHTML = '<i class="fa fa-check"></i>';
         doneBtn.append(spanDoneBtn);
 
-        li.append(delBtn);
         li.append(doneBtn);
+        li.append(delBtn);
+        
 
         let btns = document.querySelectorAll('.done');
         let icon = document.querySelectorAll('#todos li .done i');
@@ -59,10 +63,23 @@ function showTodo() {
 
 addTodo.addEventListener('click', () => {
     if (!todoInput.value == '') {
-
         let todo = {name: todoInput.value, isChecked: false};
-        todos.push(todo);
-        todoInput.value = '';
+        let checkTodo = todos.some(task => {
+            if (task.name === todo.name) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+
+        if (!checkTodo) {
+            todos.push(todo);
+            todoInput.value = '';
+        } else {
+            todoInput.value = todo.name;
+            todoInput.classList.add('is-danger');
+            notification.style.display = 'block';
+        }
         todoLists.replaceChildren();
         showTodo();
     }
@@ -72,6 +89,8 @@ clearTodo.addEventListener('click', () => {
     todoLists.replaceChildren();
     todos = [];
     todoInput.value = '';
+    notification.style.display = 'none';
+    todoInput.classList.remove('is-danger');
 });
 
 // delete todo
@@ -118,3 +137,10 @@ function doneTodo() {
         });
     }
 }
+
+// Delete Notification
+
+deleteNotification.addEventListener('click', () => {
+    notification.style.display = 'none';
+    todoInput.classList.remove('is-danger');
+});

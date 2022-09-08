@@ -12,34 +12,47 @@
     <!-- Import Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
+    <!-- Import Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Source+Sans+Pro&display=swap" rel="stylesheet">
+
     <!-- import Styles -->
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+    <div class="container is-widescreen">
+        <div class="notification is-danger">
+            <button class="delete"></button>
+            Todo already existed! 
+        </div>
+    </div>
+    <main>
     <div class="container is-max-desktop">
         <div class="section">
-            <h1 class="is-uppercase is-family-sans-serif has-text-weight-bold">Todos</h1>
+            <h1>Todos</h1>
         </div>
         <div class="section pb-5 pt-0">
             <form>
                 <div class="columns">
-                    <div class="column is-full">
-                        <input class="input" type="text" name="todo" placeholder="E.g. Go to the store" id="todo">
+                    <div class="column is-12">
+                        <input class="input is-rounded" type="text" name="todo" placeholder="Enter a new task" id="todo">
                     </div>
                 </div>
                 <div class="columns">
                     <div class="column is-12 is-flex btn-containers">
-                        <button class="button is-success submit">Add Todo</button>
+                        <button class="button is-success submit">Add Task</button>
                         <button class="button is-success is-light clear">Clear List</button>
                     </div>
                 </div>
             </form>
         </div>
-        <div class="section pt-1">
-            <ul id="todos"></ol>
+        <div class="section todo-container pt-1">
+            <ul id="todos">
+            </ul>
         </div>
     </div>
-
+    </main>
     <script src="script.js"></script>
 </body>
 </html>
