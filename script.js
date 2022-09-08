@@ -5,8 +5,6 @@ const todoLists = document.querySelector('#todos');
 const notification = document.querySelector('.notification');
 const deleteNotification = document.querySelector('.notification .delete');
 
-notification.style.display = 'none';
-
 let todos = [];
 
 let form = document.querySelector('form');
@@ -21,31 +19,36 @@ function showTodo() {
         let span = document.createElement('span');
         let spanDelBtn = document.createElement('span');
         let spanDoneBtn = document.createElement('span');
+        let divBtnContainer = document.createElement('div');
 
 
         li.classList.add('columns', 'is-size-12', 'pt-2');
         li.append(span);
-        span.classList.add('column', 'is-10');
-        span.innerText = `${todos[i].name}`;
+        li.append(divBtnContainer);
+        span.classList.add('column', 'is-9-desktop', 'is-12-mobile', 'task-content');
+        span.innerText = `${todos[i].name.replace(/.{50}/g, '$&\n')}`;
         todoLists.append(li);
+
         // creates button
         let delBtn = document.createElement('button');
         let doneBtn = document.createElement('button');
+        divBtnContainer.classList.add('column', 'is-12-mobile', 'button-container');
+       
+        divBtnContainer.append(doneBtn);
+        divBtnContainer.append(delBtn);
 
         delBtn.classList.add('button', 'is-danger', 'delete-button');
-        doneBtn.classList.add('button', 'is-primary', 'done', 'is-check');
+        doneBtn.classList.add('button', 'done', 'is-check');
         spanDelBtn.classList.add('icon');
-        spanDelBtn.innerHTML = '<i class="fa fa-x"></i>';
+        spanDelBtn.innerHTML = '<i class="fa-solid fa-minus"></i>';
         delBtn.append(spanDelBtn);
 
         spanDoneBtn.classList.add('icon');
         spanDoneBtn.innerHTML = '<i class="fa fa-check"></i>';
         doneBtn.append(spanDoneBtn);
 
-        li.append(doneBtn);
-        li.append(delBtn);
+        li.append(divBtnContainer);
         
-
         let btns = document.querySelectorAll('.done');
         let icon = document.querySelectorAll('#todos li .done i');
 

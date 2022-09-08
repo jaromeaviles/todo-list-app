@@ -1,18 +1,11 @@
 body {
     background: rgb(245,247,250);
     background: linear-gradient(90deg, rgba(245,247,250,1) 0%, rgba(195,207,226,1) 100%);
-    height: 100%;
+    height: 100vh;
 }
 
 .container {
     max-width: 800px;
-}
-
-main .container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    justify-content: center;
 }
 
 h1 {
@@ -30,18 +23,59 @@ input::placeholder {
     font-style: italic;
 }
 
-input:focus {
+.input:focus, .input:active {
     border: none;
+    box-shadow: none;
 }
 
 .todo-container {
-    padding-left: 4.2rem;
-    padding-right: 4.2rem;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* Notification */
+
+.notification {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: none;
 }
 
 ul {
     list-style-type: none;
+    height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.task-content {
+    text-align: center;
+    
+}
+
+/* Scrollbar */
+
+ul::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+ul::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+ul::-webkit-scrollbar-thumb {
+    background-color: #B9B7BD;
+    border-radius: 10px;
+}
+
 
 #todos .button {
     height: 40px;
@@ -51,6 +85,7 @@ ul {
 .delete-button, .done {
     margin-right: 5px;
     margin-left: 5px;
+    background-color: #EEEDE7;
 }
 
 ul li {
@@ -81,4 +116,52 @@ li span {
 
 button {
     cursor: pointer;
+}
+
+.button:focus:not(:active) {
+    box-shadow: none;
+}
+
+.button:focus {
+    border-color: #EEEDE7;
+}
+
+.submit {
+    background-color: #E7D2CC;
+    color: #333333;
+}
+
+.submit:focus {
+    border: none;
+    box-shadow: none;
+}
+
+.is-warning {
+    background-color: #EEEDE7 !important;
+}
+
+/* Breakpoint */
+
+@media screen and (min-width: 768px) {
+    .task-content {
+        text-align: left;
+        
+    }
+    .todo-container {
+        padding-left: 4.2rem;
+        padding-right: 4.2rem;
+    }
+    .button-container {
+        justify-content: right;
+    }
+    
+}
+@media screen and (min-width: 992px) {
+    .task-content {
+        text-align: left;
+    }
+    .todo-container {
+        padding-left: 6.2rem;
+        padding-right: 4.2rem;
+    }
 }
