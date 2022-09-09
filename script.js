@@ -78,11 +78,17 @@ addTodo.addEventListener('click', () => {
         if (!checkTodo) {
             todos.push(todo);
             todoInput.value = '';
+            // checks if there are still notification error
+            if (todoInput.classList.contains('is-danger')) {
+                todoInput.classList.remove('is-danger');
+                notification.style.display = 'none';
+            }
         } else {
             todoInput.value = todo.name;
             todoInput.classList.add('is-danger');
             notification.style.display = 'block';
         }
+
         todoLists.replaceChildren();
         showTodo();
     }
