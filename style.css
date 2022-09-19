@@ -44,7 +44,7 @@ input::placeholder {
 
 ul {
     list-style-type: none;
-    height: 200px;
+    height: 240px;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -157,6 +157,9 @@ button {
     
 }
 @media screen and (min-width: 992px) {
+    ul {
+        height: 200px;
+    }
     .task-content {
         text-align: left;
     }
